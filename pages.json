@@ -12,7 +12,8 @@
 		"selectedColor": "#303133",
 		"backgroundColor": "#FFFFFF",
 		"borderStyle": "black",
-		"list": [{
+		"list": [
+			{
 				"pagePath": "pages/home/home",
 				"iconPath": "static/icon/home.png",
 				"selectedIconPath": "static/icon/home_active.png",
@@ -30,22 +31,20 @@
 		{
 			"path": "pages/home/home",
 			"style": {
-				"navigationBarTitleText": "租房",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
 			"path": "pages/me/me",
 			"style": {
-				"navigationBarTitleText": "我的",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "我的"
 			}
 		}
 	],
 	"subPackages": [],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "租房",
+		"navigationBarTitleText": "小程序",
 		"navigationBarBackgroundColor": "#3B86D8",
 		"backgroundColor": "#FFFFFF"
 	}

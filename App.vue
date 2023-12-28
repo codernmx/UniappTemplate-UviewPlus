@@ -1,41 +1,46 @@
-<!--
- * @Date: 2023-10-29 13:28:10
- * @LastEditTime: 2023-10-31 14:41:12
--->
 <script>
 export default {
 	onLaunch: function () {
-		console.log('App Launch');
 
-		// uni.login({
-		// 	provider: 'weixin',
-		// 	onlyAuthorize: true, // 微信登录仅请求授权认证
-		// 	success: async ({ code }) => {
-		// 		const res = await login({ code });
-		// 		console.log(res, 'getuserinfo--------------->');
-		// 		if (res.data) {
-		// 			$store.$userInfo = res.data.userInfo;
-		// 			uni.setStorageSync('userInfo', res.data.userInfo);
-		// 			uni.switchTab({
-		// 				url: '/pages/home/home'
-		// 			});
-		// 		} else {
-		// 			show.value = true;
-		// 			uni.removeStorageSync('userInfo');
-		// 		}
-		// 	},
-		// 	fail: (err) => {
-		// 		console.log(err, 'err------------------>');
-		// 	},
-		// 	complete() {}
-		// });
 	},
 	onShow: function (options) {
-		console.log('App Show--->', options);
-		// console.log(uni.$u.http)
+		console.log ('App Show--->', options);
+		this.updateApp ();
+		console.log (uni.$u.route)
 	},
 	onHide: function () {
-		console.log('App Hide');
+		console.log ('App Hide');
+	},
+	methods: {
+		updateApp: function () {
+			const updateManager = uni.getUpdateManager ();
+			updateManager.onCheckForUpdate (function (res) {
+				// 请求完新版本信息的回调
+				console.log (res.hasUpdate, '是否需要更新~~~');
+				if ( res.hasUpdate ) {
+					uni.$u.toast ('检测到新版本~');
+				}
+			});
+			updateManager.onUpdateReady (function (res) {
+				uni.showModal ({
+					title: '更新提示',
+					content: '新版本已经准备好，是否重启应用？',
+					success (res) {
+						if ( res.confirm ) {
+							updateManager.applyUpdate ();
+						}
+					}
+				});
+			});
+			updateManager.onUpdateFailed (function (res) {
+				uni.showToast ({
+					title: '更新失败',
+					icon: 'none',
+					duration: 2000
+				});
+				// 新的版本下载失败
+			});
+		}
 	}
 };
 </script>
@@ -43,8 +48,6 @@ export default {
 <style lang="scss">
 /*每个页面公共css */
 @import 'uni_modules/uview-plus/index.scss';
-@import 'common/demo.scss';
-@import '/styles/public.css';
 
 page {
 	max-width: 1000rpx;
