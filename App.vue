@@ -6,7 +6,6 @@ export default {
 	onShow: function (options) {
 		console.log ('App Show--->', options);
 		this.updateApp ();
-		console.log (uni.$u.route)
 	},
 	onHide: function () {
 		console.log ('App Hide');

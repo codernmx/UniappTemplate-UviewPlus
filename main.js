@@ -23,6 +23,12 @@ let i18nConfig = {
 // 引入uView对小程序分享的mixin封装
 import mpShare from '@/uni_modules/uview-plus/libs/mixin/mpShare.js'
 import mixin from './common/mixin'
+// 数据持久化
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+const pinia = Pinia.createPinia()
+pinia.use(piniaPluginPersistedstate)
+
+
 
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
@@ -39,7 +45,7 @@ export function createApp () {
 	// .use (store)
 	app.use (i18n)
 		.use (uviewPlus)
-		.use (Pinia.createPinia ());
+		.use (pinia));
 
 	// #ifdef MP
 	app.mixin (mpShare)
