@@ -45,7 +45,7 @@ export function createApp () {
 	// .use (store)
 	app.use (i18n)
 		.use (uviewPlus)
-		.use (pinia));
+		.use (pinia);
 
 	// #ifdef MP
 	app.mixin (mpShare)
